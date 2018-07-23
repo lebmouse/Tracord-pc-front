@@ -1,9 +1,6 @@
 <template>
 <nav class="Navigation">
-  <div class="wrap">
-    <div class="container">
-
-    </div>
+  <div class="container">
   </div>
 </nav>
 </template>
@@ -14,15 +11,14 @@ export default {
 </script>
 <style lang='scss' scoped>
 .Navigation {
-  .wrap {
-    margin: 0;
-    padding: 0;
+  position: relative;
+  .container {
+    position:fixed;
     box-sizing: border-box;
-    position: relative;
-      .container{
-        height:90%;
-        background-color: #000000;
-      }
+    width:100px;
+    height: 100%;
+    background-color: black;
+    border:1px solid white;
   }
 }
 </style>
