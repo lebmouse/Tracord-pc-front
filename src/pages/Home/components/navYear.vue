@@ -5,7 +5,7 @@
 </navigation>
 </template>
 <script>
-import Navigation from '../../components/Navigation/Navigation'
+import Navigation from '../../../components/Navigation/Navigation'
 
 export default {
   components: {

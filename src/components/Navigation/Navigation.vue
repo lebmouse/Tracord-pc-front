@@ -43,12 +43,9 @@ export default {
         this.$refs.NavigationContent.style.transform = `translateX(0)`
       }
       this.isDraw = !this.isDraw
-      console.log(this.isDraw);
-      console.log(this.$refs.NavigationContent)
     }
   },
   mounted() {
-    console.log(this.$refs.NavigationContent.style.transform)
     this.$refs.NavigationContent.style.transform = `translateX(calc(${this.marginLeft}px - 100%))`
   }
 
@@ -66,7 +63,8 @@ export default {
       left: 0;
       bottom: 0;
       box-sizing: border-box;
-      width: 95%;
+      width:95%;
+      min-width: 1400px;
       height: 95%;
       // transform: translateX(calc(101px - 100%));
       transform-origin: 0;

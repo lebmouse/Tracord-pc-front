@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import navYear from './navYear'
-import navMonth from './navMonth'
+import navYear from './components/navYear'
+import navMonth from './components/navMonth'
 export default {
   name: 'home',
   components: {
