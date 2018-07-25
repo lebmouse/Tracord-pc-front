@@ -72,9 +72,6 @@ export default {
       background-color: black;
       border: 1px solid white;
       transition: 0.5s;
-      &._drawActive {
-        // transform: translateX(0);
-      }
     }
   }
   &Cover {
