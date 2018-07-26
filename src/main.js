@@ -3,9 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/store'
 import firebase from 'firebase'
-
-
+import GlobalComponents from '@/components/route.js'
 
 Vue.config.productionTip = false
 
@@ -25,8 +25,10 @@ firebase.initializeApp(config);
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
-    App
+    App,
+    GlobalComponents
   },
-  template: '<App/>'
+  template: '<App/>',
 })

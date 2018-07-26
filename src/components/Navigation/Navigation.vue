@@ -31,7 +31,7 @@ export default {
   },
   computed:{
     marginLeft(){
-      console.log(this.order*100 + 0.5)
+      // console.log(this.order*100 + 0.5)
       return this.order*100 + 1
     }
   },

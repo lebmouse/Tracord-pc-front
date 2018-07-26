@@ -1,13 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import getters from './getters.js'
+import mutations from './mutations.js'
+import actions from './actions.js'
 
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
+
+
+
+export default new Vuex.Store({
   state: {
-    // isDraw:false
+    uid: '',
+    errorState: '',
+    isAuth: false
   },
-  getters: {},
-  mutations: {},
-  actions: {}
+  getters,
+  mutations,
+  actions
 })

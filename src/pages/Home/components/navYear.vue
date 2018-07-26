@@ -5,12 +5,12 @@
 </navigation>
 </template>
 <script>
-import Navigation from '../../../components/Navigation/Navigation'
+// import Navigation from '../../../components/Navigation/Navigation'
 
 export default {
-  components: {
-    Navigation
-  }
+  // components: {
+  //   Navigation
+  // }
 }
 </script>
 <style lang='scss' scoped>

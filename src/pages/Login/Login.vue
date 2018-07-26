@@ -25,8 +25,8 @@ export default {
 </script>
 <style lang='scss' scoped>
 .Login {
-  background-color: black;
-  justify-content: center;
+  position: fixed;
+  // background-color: blue;
   height: 100%;
   width: 100%;
   .container {
@@ -34,6 +34,7 @@ export default {
     margin-top: 150px;
     width: 900px;
     height: 300px;
+    // height:100%;
     border: 1px solid white;
     display: flex;
   }
