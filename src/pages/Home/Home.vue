@@ -21,14 +21,13 @@ export default {
       console.log('asdf');
       firebase.auth().signOut().then(() => {
         alert('로그아웃 되었습니다.');
-        this.$router.replace('/login')
+        this.$router.replace('/')
       })
     }
   },
-  mounted(){
-    let user = firebase.auth().currentUser;
-    console.log('user')
-    console.log(user);
+  beforeUpdate() {
+    // let user = firebase.auth().currentUser.uid
+    // console.log(user);
   }
 }
 </script>

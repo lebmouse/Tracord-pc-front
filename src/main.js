@@ -7,6 +7,9 @@ import store from './store/store'
 import firebase from 'firebase'
 import GlobalComponents from '@/components/route.js'
 
+import 'swiper/dist/css/swiper.min.css'
+
+
 Vue.config.productionTip = false
 
 

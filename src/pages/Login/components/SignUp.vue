@@ -22,6 +22,15 @@
 <script>
 import firebase from 'firebase'
 
+// let db = firebase.database();
+
+// function writeUserData(userId, name, email, imageUrl) {
+//   firebase.database().ref('users/' + userId).set({
+//     username: name,
+//     email: email,
+//   });
+// }
+
 export default {
   name: 'SignUp',
   props: ['isPopUp'],
@@ -44,9 +53,19 @@ export default {
     submit() {
       if (this.isEqualPw) {
         firebase.auth().createUserWithEmailAndPassword(this.id, this.pw)
-          .then(function(user) {
-              alert('Your acconut has been created !')
-            },
+          .then(
+            user=>{
+              console.log(user.user);
+              firebase.database().ref('/users/' + user.user.uid).set({
+                userData: {
+                  displayName: user.user.displayName,
+                  email: user.user.email,
+                  phoneNumber: user.user.phoneNumber,
+                  photoURL: user.user.photoURL
+                }
+              })
+              this.close();
+            }).catch(
             function(err) {
               alert('Oops' + err.message)
             })

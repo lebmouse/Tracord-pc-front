@@ -26,12 +26,11 @@ export default {
   },
   data() {
     return {
-      isDraw: false
+      isDraw: true
     }
   },
   computed:{
     marginLeft(){
-      // console.log(this.order*100 + 0.5)
       return this.order*100 + 1
     }
   },

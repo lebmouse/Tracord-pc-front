@@ -15,14 +15,14 @@ var router = new Router({
         console.log('home-beforeEnter')
         let signInState = firebase.auth().onAuthStateChanged(user => user)
         if (!signInState) {
-          next('/login');
+          next('/');
         } else {
           next();
         }
       }
     },
     {
-      path: '/login',
+      path: '/',
       name: 'login',
       component: Login,
       beforeEnter: (to, from, next) => {
