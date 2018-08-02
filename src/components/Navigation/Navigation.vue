@@ -1,7 +1,7 @@
 <template>
 <nav class="Navigation">
   <div class="NavigationContent">
-    <div class="container" ref="NavigationContent" @click="draw">
+    <div class="container" ref="NavigationContent">
       <slot name="contents"></slot>
     </div>
   </div>
