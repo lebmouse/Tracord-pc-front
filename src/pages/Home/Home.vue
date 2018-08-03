@@ -1,30 +1,24 @@
 <template>
 <div class="home">
-  <nav-year class="nav-year"></nav-year>
+  <record-content class="record-content"></record-content>
   <nav-month class="nav-month"></nav-month>
-  <button @click="logout">Logout</button>
+  <nav-year class="nav-year"></nav-year>
 </div>
 </template>
 
 <script>
 import navYear from './components/navYear'
 import navMonth from './components/navMonth'
+import RecordContent from './components/Record/RecordContent'
 import firebase from 'firebase'
 export default {
   name: 'home',
   components: {
     navYear,
-    navMonth
+    navMonth,
+    RecordContent
   },
-  methods: {
-    logout() {
-      console.log('asdf');
-      firebase.auth().signOut().then(() => {
-        alert('로그아웃 되었습니다.');
-        this.$router.replace('/')
-      })
-    }
-  },
+  
   beforeUpdate() {
     // let user = firebase.auth().currentUser.uid
     // console.log(user);
@@ -34,16 +28,32 @@ export default {
 <style lang='scss' scoped>
 .home {
   position: relative;
+  height: 100%;
+  width: 100%;
+  // background-color: #fff;
 }
 
 .nav-year {
-  z-index: 1;
-  position: fixed;
+  z-index: 2;
+  position: absolute;
 }
 
 .nav-month {
-  z-index: 0;
+  z-index: 2;
   left: 100px;
   position: absolute;
+}
+
+.record-content {
+  position: fixed;
+  width: 87%;
+  margin-top: 2.3%;
+  // height: 100%;
+  background-color: blue;
+  right:0;
+  // margin-left: auto;
+  // margin-right: 0;
+  // overflow-x: hidden;
+  height: 100%;
 }
 </style>
