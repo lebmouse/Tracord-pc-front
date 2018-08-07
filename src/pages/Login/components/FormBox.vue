@@ -43,7 +43,7 @@ export default {
         email : this.email,
         password : this.password
       }
-      this.$store.commit('signIn',signInObj)
+      this.$store.dispatch('syncSignIn',signInObj)
     }
   },
   mounted(){

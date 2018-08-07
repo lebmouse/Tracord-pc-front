@@ -56,10 +56,7 @@ export default {
       console.log(firebase.auth().currentUser)
     },
     logout() {
-      firebase.auth().signOut().then(() => {
-        alert('로그아웃 되었습니다.');
-        this.$router.replace('/')
-      })
+      this.$store.dispatch('syncSignOut')
     },
     updateBar(e) {
       this.currentTime = this.convertElapsedTime(e.target.currentTime)

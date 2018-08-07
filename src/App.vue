@@ -10,7 +10,7 @@ export default {
   name: 'App',
   beforeCreate() {
     console.log('app-mounted')
-    this.$store.commit('setCurrentuser')
+    this.$store.dispatch('syncSetCurrentUser')
   }
 }
 </script>
