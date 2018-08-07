@@ -42,7 +42,6 @@ export default {
       return new Date(this.presentDateObject.year, this.presentDateObject.month, 1).getDay();
     },
     afterDays() {
-      console.log(35 - this.monthLength+this.beforeDays)
       return 35 - this.monthLength+this.beforeDays
     },
     monthLength() {

@@ -1,12 +1,17 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+<div id="app">
+  <router-view/>
+</div>
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
-  name: 'App'
+  name: 'App',
+  beforeCreate() {
+    console.log('app-mounted')
+    this.$store.commit('setCurrentuser')
+  }
 }
 </script>
 
@@ -17,8 +22,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body{
-  margin:0;
+body {
+  margin: 0;
   /* height:100%; */
   /* padding:0; */
   box-sizing: border-box;

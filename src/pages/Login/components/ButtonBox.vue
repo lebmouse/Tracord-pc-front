@@ -1,12 +1,13 @@
 <template>
 <div class="ButtonBox">
-  <button class="ButtonBox_Items" v-for="(buttonItem,index) in buttonGroup" :key="index">
+  <button class="ButtonBox_Items" v-for="(buttonItem,index) in buttonGroup" :key="index" @click="userPrint">
     <i :class="buttonItem.logo" class="ButtonBox_logo"></i>
     <div class="ButtonBox_text">Login with {{buttonItem.name}}</div>  
       </button>
 </div>
 </template>
 <script>
+import firebase from 'firebase'
 export default {
   data() {
     return {
@@ -24,6 +25,11 @@ export default {
         name: 'Soundcloud'
       }, ]
     }
+  },
+  methods: {
+    userPrint() {
+      console.log(firebase.auth().currentUser)
+    },
   }
 
 }
@@ -46,7 +52,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   &_Items {
-    margin:5px auto;
+    margin: 5px auto;
     width: 250px;
     height: 37px;
     display: flex;

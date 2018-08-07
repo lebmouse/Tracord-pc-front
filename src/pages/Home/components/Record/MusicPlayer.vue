@@ -1,11 +1,11 @@
 <template>
 <div class="MusicPlayer">
-  <audio controls style="height:10px" id="audio" @timeupdate="updateBar">
+  <audio id="audio" @timeupdate="updateBar">
     <source src="@/assets/music/KARD_Ride on the wind.mp3" type="audio/mp3">
     </audio>
   <div class="container">
 
-    <button>TODAY</button>
+    <button @click="userPrint">TODAY</button>
 
     <div id="player">
       <div id="current-time" class="time-text">{{currentTime}}</div>
@@ -13,8 +13,8 @@
         <div id="meter" :style="{'width':percentage+'%'}"></div>
       </div>
       <div id="duration" class="time-text">{{duration}}</div>
-      <div class="volume">
-        <div class="volume_controler">
+      <div id="volume">
+        <div id="volume_controler">
           <div id="volume_progress">
             <div id="volume_meter" :style="{'height':volumePercentage+'%'}"></div>
           </div>
@@ -52,6 +52,9 @@ export default {
     }
   },
   methods: {
+    userPrint(){
+      console.log(firebase.auth().currentUser)
+    },
     logout() {
       firebase.auth().signOut().then(() => {
         alert('로그아웃 되었습니다.');
@@ -96,20 +99,18 @@ export default {
       percentage = null,
       isDown = false,
       tracMove = (e) => {
+
         percentage = e.offsetX / progress.clientWidth
         audio.currentTime = percentage * this.audioDuration;
       }
-
     progress.onmousedown = (e) => {
       e.preventDefault();
       isDown = true;
-      console.log(isDown)
     }
     progress.onmouseup = (e) => {
       e.preventDefault();
       isDown = false;
       tracMove(e)
-      console.log(isDown)
     }
     progress.onmousemove = (e) => {
       if (isDown) {
@@ -119,34 +120,26 @@ export default {
 
     let volumeProgress = document.getElementById('volume_progress'),
       volumeMeter = document.getElementById('volume_meter'),
-      volumeMove = (e) => {
-        percentage = e.offsetY / volumeProgress.clientHeight * 100
-        consl
-        audio.volume = percentage;
-      }
+      isVolumeDown = false;
 
-    volumeProgress.onclick = (e) => {
-      console.log('e.offsetY: ' + e.offsetY)
-      console.log('volumeProgress.clientHeight: ' + volumeProgress.clientHeight)
-      console.log('per: ' + (1 - e.offsetY / volumeProgress.clientHeight))
-      this.volume = 1 - e.offsetY / volumeProgress.clientHeight
+    volumeProgress.onmousedown = (e) => {
+      e.preventDefault();
+      isVolumeDown = true;
     }
-
-    // volumeProgress.onmousedown = (e) => {
-    //   e.preventDefault();
-    //   isDown = true;
-    // }
-    // volumeProgress.onmouseup = (e) => {
-    //   e.preventDefault();
-    //   isDown = false;
-    //   volumeMove(e)
-    // }
-    // volumeProgress.onmousemove = (e) => {
-    //   if (isDown) {
-    //     volumeMove(e)
-    //   }
-    // }
-
+    volumeProgress.onmouseup = (e) => {
+      e.preventDefault();
+      isVolumeDown = false;
+      let outVolume = 1 - e.offsetY / volumeProgress.clientHeight;
+      this.volume = outVolume
+      audio.volume = outVolume
+    }
+    volumeProgress.onmousemove = (e) => {
+      if (isVolumeDown) {
+        let outVolume = 1 - e.offsetY / volumeProgress.clientHeight;
+        this.volume = outVolume
+        audio.volume = outVolume
+      }
+    }
 
   }
 }
@@ -154,20 +147,21 @@ export default {
 <style lang='scss' scoped>
 .MusicPlayer {
   position: relative;
+  background-color: blue;
   display: flex;
   justify-content: center;
   >.container {
+    z-index: 3;
     display: flex;
-    // width: 30%;
-    height: 6%;
     position: fixed;
+    // height: 6%;
+    // left:0;
     bottom: 0%;
-    // background-color: #fff;
     #player {
       margin-left: 3%;
       margin-right: 3%;
       min-width: 300px;
-      height: 100%;
+      height: 45px;
       background-color: black;
       border: 1px solid white;
       display: flex;
@@ -195,34 +189,41 @@ export default {
     box-shadow: 0px 0px 2px 1px white;
   }
   #meter {
+    pointer-events: none;
     height: 100%;
     background-color: white;
   }
 }
 
-.volume {
+#volume {
   position: relative;
   &_controler {
+    visibility: hidden;
     position: absolute;
     top: -82px;
     left: -2px;
     height: 80px;
     width: 20px;
     background-color: rgba(0, 0, 0, 0.6);
-    // display: flex;
     #volume_progress {
-      background-color: rgba(255, 255, 255, 0.5);
+      position: relative;
+      background-color: red;
       height: 90%;
       width: 3px;
       margin: auto;
       margin-top: 20%;
       #volume_meter {
+        pointer-events: none;
         position: absolute;
-        bottom:0;
+        height: 100%;
+        bottom: 0;
         width: 3px;
         background-color: white;
       }
     }
+  }
+  &:hover &_controler {
+    visibility: visible;
   }
 }
 </style>

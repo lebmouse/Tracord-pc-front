@@ -6,8 +6,8 @@
         <div class="month-head">
           {{index}}th
         </div>
-        <div class="cover">
-          <img src="http://tenasia.hankyung.com/webwp_kr/wp-content/uploads/2017/02/2017021615033620072-540x540.jpg" alt="">
+        <div class="cover" @click="coverClick">
+          <img class="cover_img" src="http://tenasia.hankyung.com/webwp_kr/wp-content/uploads/2017/02/2017021615033620072-540x540.jpg" alt="">
         </div>
       </div>
     </div>
@@ -16,7 +16,7 @@
   <i class="fas fa-step-backward"></i>
   </span>
   <span class="button button-play">
-  <i class="fas fa-play"></i>
+  <i :class="playButton" @click="playing"></i>
   </span>
   <span class="button button-forward">
   <i class="fas fa-step-forward"></i>
@@ -34,25 +34,70 @@ Swiper.use([Navigation, Pagination, Scrollbar]);
 
 export default {
   name: 'MusicSlide',
+  data() {
+    return {
+      isPlay: false,
+      beforeTrack: null
+    }
+  },
+  computed: {
+    playButton() {
+      if (this.isPlay) {
+        return 'fas fa-pause'
+      } else {
+        return 'fas fa-play'
+      }
+    }
+  },
+  methods: {
+    playing() {
+      let audio = document.getElementById('audio')
+      if (this.isPlay) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      this.isPlay = !this.isPlay
+    },
+    coverClick(e) {
+      let coverEl = document.getElementsByClassName('cover'),
+        arrayCoverEl = Array.from(coverEl),
+        coverIndex = arrayCoverEl.indexOf(e.currentTarget);
+      e.currentTarget.classList.add('cover-active');
+      if (this.beforeTrack !== null) {
+        console.log(this.beforeTrack);
+        coverEl[this.beforeTrack].classList.remove('cover-active')
+      }
+      this.beforeTrack = coverIndex;
+    }
+  },
+  watch: {
+    isPlay() {
+      let coverImg = document.getElementsByClassName('cover_img')[0]
+      if (this.isPlay) {
+        coverImg.classList.add('play-active')
+      } else {
+        coverImg.classList.remove('play-active')
+      }
+    }
+  },
   mounted() {
     let mySwiper = new Swiper('.music-swiper-container', {
-      // Optional parameters
       slidesPerView: 3,
-      spaceBetween: 80,
+      spaceBetween: 30,
       centeredSlides: true,
-      // slidesOffsetAfter:40,
-      slidesOffsetBefore: 5,
       direction: 'horizontal',
     });
+  },
+  updated() {
+
   }
 }
 </script>
 <style lang='scss' scoped>
 .MusicSlide {
   position: relative;
-  padding-top: 20px;
-  background-color: red;
-  // height:100%;
+  padding-top: 10px;
   .month-head {
     color: white;
     font-size: 30px;
@@ -60,9 +105,9 @@ export default {
     padding-bottom: 5px;
   }
   .cover {
-    position:relative;
-    width: 300px;
-    height: 300px;
+    margin: auto;
+    width: 340px;
+    height: 340px;
     border: 1.3px solid white;
     border-radius: 100%;
     box-sizing: border-box;
@@ -70,8 +115,32 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: .99;
     overflow: hidden;
+    transition: 0.2s;
+    &_img {
+      height: 100%;
+      width: 100%;
+      transform: rotate(0deg);
+    }
+    &_img.play-active {
+      animation: rotateCover 3s linear;
+      animation-direction: normal;
+      animation-iteration-count: infinite;
+      transform: scale(1.1);
+      // transform: rotate(360deg);
+      @keyframes rotateCover {
+        0% {
+          transform: rotate(1deg)
+        }
+        100% {
+          transform: rotate(360deg)
+        }
+      }
+    }
+  }
+  .cover.cover-active {
+    transition: 0.3s;
+    box-shadow: 0px 0px 15px 3px white;
   }
   .button {
     background-color: rgba(255, 255, 255, 0);
@@ -81,13 +150,13 @@ export default {
     color: white;
     font-size: 35px;
     &.button-backward {
-      left: 14%;
+      left: 15%;
     }
     &.button-play {
-      left: 50%;
+      left: 49%;
     }
     &.button-forward {
-      left: 86%;
+      left: 83%;
     }
   }
 }

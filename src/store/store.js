@@ -13,7 +13,9 @@ export default new Vuex.Store({
   state: {
     uid: '',
     errorState: '',
-    isAuth: false
+    isAuth: false,
+    currentUser:null,
+    user:null
   },
   getters,
   mutations,

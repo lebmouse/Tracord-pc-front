@@ -45,15 +45,14 @@ export default {
 }
 
 .record-content {
-  position: fixed;
+  position: relative;
+  min-width:1200px;
   width: 87%;
   margin-top: 2.3%;
-  // height: 100%;
-  background-color: blue;
-  right:0;
-  // margin-left: auto;
-  // margin-right: 0;
-  // overflow-x: hidden;
+  // background-color: blue;
+  margin-left: auto;
+  margin-right: 0;
+  overflow-x: hidden;
   height: 100%;
 }
 </style>

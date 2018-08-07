@@ -20,20 +20,4 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-.music {
-  &-slide {
-    height: 40%;
-    width: 100%;
-  }
-  &-note {
-    height: 40%;
-    width: 100%;
-    background-color:orangered;
-  }
-  &-player {
-    height: 20%;
-    width: 100%;
-    background-color:olive;
-  }
-}
 </style>

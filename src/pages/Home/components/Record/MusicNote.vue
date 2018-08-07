@@ -1,8 +1,8 @@
 <template>
-<div class="MusicNote">
+<div class="MusicNote wrap">
   <div class="container">
     <div class="title">
-      <i class="fas fa-music"></i> CIFIKA - SOAK(Oddman jay Remix)
+      <i class="fas fa-music"></i> CIFIKA - SasdfasfasdfOAK(Oddman jay Remix)
       <i class="fas fa-music"></i>
     </div>
     <div class="diary">
@@ -12,7 +12,7 @@
     </div>
     <div class="information gray-box">
       <div class="temperature">
-        <i class="fas fa-umbrella"></i> 24℃ 
+        <i class="fas fa-umbrella"></i> 24℃
       </div>
       <div class="location">전주시 덕진구 덕진광장로 12 할리스커피 전북대점</div>
     </div>
@@ -25,34 +25,35 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-.container {
-  // width: 800px;
-  height: 100%;
-  background-color: navy;
-  margin: auto;
-  color:white;
-  text-align: center;
-  display:flex;
-  flex-wrap:wrap;
-  flex-direction: column;
-  justify-content:space-around;
-  align-items: center;
-  // align-content:space-around;
-  .gray-box{
-    
-    min-width: 550px;
-    min-height: 20%;
-    padding-top:15px;
-    padding-bottom:15px;
-    background-color:slategray;
+// .wrap{
+  .container {
+    padding-left:1%;
+    width: 100%;
+    margin: auto;
+    color: white;
+    text-align: center;
+    margin-bottom:4%;
+    .gray-box {
+      width:40%;
+      // max-height: 100px;
+      // height:100%;
+      margin-left:auto;
+      margin-right:auto;
+      margin-top : 15px;
+      margin-bottom:15px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background-color: rgba(115, 117, 119, 0.7);
+      font-size:1em;
+    }
+    .title {
+      font-size: 40px;
+      padding-top: 15px;
+    }
+    .temperature {
+      font-size: 25px;
+      padding-bottom: 8px;
+    }
   }
-  .title{
-    font-size : 40px;
-    padding-top:15px;
-  }
-  .temperature{
-    font-size:25px;
-    padding-bottom:8px;
-  }
-}
+// }
 </style>
