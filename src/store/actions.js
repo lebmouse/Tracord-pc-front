@@ -1,21 +1,41 @@
 import * as types from './types.js'
+import firebase from 'firebase'
 
 
 export default {
-  login(store, {
-    uid,
-    password
+  syncSetCurrentUser({
+    commit
   }) {
-    /* 로그인은 백엔드를 다녀와야 하냐 비동기 처리를 한다 */
+    firebase.auth().onAuthStateChanged((res) => {
+      if (res) {
+        console.log('user setCurrentUser')
+        console.log(res)
+        commit('setCurrentuser',res)
+      } else {
+        console.log('no user setCurrentUser')
+        commit('setCurrentuser',null)
+      }
+    });
   },
-  setPersistence() {
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      .then(function() {
-        return firebase.auth().signInWithEmailAndPassword(email, password);
-      })
-      .catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-      });
+  syncSignIn({commit},payload){
+    firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(
+      (res) => {
+        console.log('signIn')
+        console.log(res.user);
+        console.log(state)
+        commit('signIn',res.user)
+      },
+      (err) => {
+        alert('error : ' + err)
+      }
+    )
+  },
+  syncSignOut({
+    commit
+  }){
+    firebase.auth().signOut().then(() => {
+      alert('로그아웃 되었습니다.');
+      commit('signOut')
+    })
   }
 }

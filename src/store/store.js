@@ -11,9 +11,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    uid: '',
-    errorState: '',
-    isAuth: false
+    user:null,
   },
   getters,
   mutations,
