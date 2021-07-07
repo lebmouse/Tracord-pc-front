@@ -39,15 +39,11 @@ export default {
       this.isSignUp = false
     },
     signIn() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-        res=> {
-          console.log(res.user);
-          this.$router.replace('/home')
-        },
-        err=> {
-          alert('error : ' + err)
-        }
-      )
+      let signInObj = {
+        email : this.email,
+        password : this.password
+      }
+      this.$store.dispatch('syncSignIn',signInObj)
     }
   },
   mounted(){

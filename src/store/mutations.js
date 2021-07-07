@@ -1,13 +1,17 @@
-import * as types from './types.js'
+// import firebase from 'firebase'
+import router from '../router/index.js'
 
 export default {
-  [types.UID](state,uid){
-    state.uid = uid
+  setCurrentuser(state,payload) {
+    state.user = payload
   },
-  [types.ERROR_STATE](state,errorState){
-    state.errorState = errorState
+  signIn(state, payload) {
+    state.user = payload
+    router.replace('/home')
+    // if(payload){
+    // }
   },
-  [types.IS_AUTH](state,isAuth){
-    state.isAuth = isAuth
+  signOut(state) {
+    state.user = null
   }
 }

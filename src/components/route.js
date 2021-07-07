@@ -1,6 +1,5 @@
 import Vue from 'vue';
 
-// import Button from '@/components/Button/Button.vue';
 import Modal from '@/components/Modal/Modal.vue';
 import Navigation from '@/components/Navigation/Navigation.vue';
 
